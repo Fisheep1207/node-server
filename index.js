@@ -1,21 +1,19 @@
 const express = require('express'); 
+const serveIndex = require('serve-index');
 const app = express();
 
 app.get('/', function (req, res) {
 	res.send("hello");
 })
-app.get('/reef_pnl_1', function (req, res) {
+
+app.get('/sand_pnl', function (req, res) {
 // console.log("/reef_pnl")
-  res.sendFile("/home/qiuyuyang/python_monitor/reef_pnl_1.html");
+  res.sendFile("/home/qiuyuyang/python_monitor/sand_config.html");
 });
 
-app.get('/reef_pnl_2', function (req, res) {
-// console.log("/reef_pnl")
-  res.sendFile("/home/qiuyuyang/python_monitor/reef_pnl_2.html");
-});
-// app.listen(8888, "0.0.0.0", function () { 
-//   console.log('Example app listening on port 8888!');
-// });
+app.use('/graphs', express.static('/home/qiuyuyang/python_monitor/graphs/html'))
+app.use('/graphs', serveIndex('/home/qiuyuyang/python_monitor/graphs/html'))
+
 app.listen(8888, "0.0.0.0", function () { 
   console.log('Example app listening on port 8888!');
 });
